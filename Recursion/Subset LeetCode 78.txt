@@ -1,0 +1,22 @@
+class Solution {
+    public static void ret_subset(int[] num, List<List<Integer>> answer, List<Integer> ans, int i) {
+    if (i == num.length) {
+        answer.add(new ArrayList<>(ans));  // Store a copy of current subset
+        return ;
+    }
+    // Include current element
+    ans.add(num[i]);
+    ret_subset(num, answer, ans, i + 1);
+
+    // Backtrack and exclude the current element
+    ans.remove(ans.size() - 1);
+    ret_subset(num, answer, ans, i + 1);
+}
+
+
+    public List<List<Integer>> subsets(int[] nums) {
+        List<List<Integer>> answer = new ArrayList<>();
+        ret_subset(nums,answer,new ArrayList<Integer>(),0);
+        return answer;
+    }
+}
